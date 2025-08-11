@@ -1,8 +1,0 @@
-wwwroot\css\dattaable-style.css
-wwwroot\css\pagination.css
-wwwroot\css\sidebar.css
-wwwroot\favicon.ico
-wwwroot\js\dattaable-core.js
-wwwroot\js\pagination.js
-wwwroot\js\premium-animations.js
-wwwroot\js\sidebar.js
