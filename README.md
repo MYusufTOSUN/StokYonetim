@@ -50,3 +50,4 @@ Ayrıca `SIPARIS_EKLE`, `ESITLE_STOK_MIKTAR` prosedürleri, `CARI_TOPLAM_SIPARIS
    "ConnectionStrings": {
      "connStr": "Data Source=XE;User Id=XXXX;Password=XXXX;"
    }
+3. Uygun şekilde .NET Forms veya ASP.NET MVC uygulamasını çalıştırın.
