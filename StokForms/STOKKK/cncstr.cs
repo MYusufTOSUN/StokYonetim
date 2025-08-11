@@ -7,7 +7,7 @@ namespace Stok
     public class cncstr
     {
         public OracleConnection con;
-        private string connStr = "User Id=YUSUF;Password=9812;Data Source=127.0.0.1:1521/XE;";
+        private string connStr = "User Id=YUSUF;Password=XXXX;Data Source=127.0.0.1:1521/XE;";
 
         public bool DB()
         {
