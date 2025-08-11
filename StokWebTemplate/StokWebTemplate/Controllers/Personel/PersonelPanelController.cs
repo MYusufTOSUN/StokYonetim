@@ -5,6 +5,17 @@ public class PersonelPanelController : Controller
 {
     public IActionResult Index()
     {
+        // İlk giriş kontrolü - hoşgeldin mesajı için
+        if (HttpContext.Session.GetString("PersonelWelcomeShown") == null)
+        {
+            ViewBag.ShowWelcome = true;
+            HttpContext.Session.SetString("PersonelWelcomeShown", "true");
+        }
+        else
+        {
+            ViewBag.ShowWelcome = false;
+        }
+
         // Varsayılan değerler
         ViewBag.Kullanici = HttpContext.Session.GetString("KULLANICI_ADI") ?? "Personel";
         ViewBag.ToplamSiparis = 0;

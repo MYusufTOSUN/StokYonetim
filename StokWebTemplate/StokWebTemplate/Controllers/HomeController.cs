@@ -15,6 +15,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        // İlk giriş kontrolü
+        if (HttpContext.Session.GetString("WelcomeShown") == null)
+        {
+            ViewBag.ShowWelcome = true;
+            HttpContext.Session.SetString("WelcomeShown", "true");
+        }
+        else
+        {
+            ViewBag.ShowWelcome = false;
+        }
+
         return View();
     }
 

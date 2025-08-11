@@ -20,6 +20,17 @@ namespace StokWeb.Controllers.Admin
 
         public IActionResult Index()
         {
+            // İlk giriş kontrolü - hoşgeldin mesajı için
+            if (HttpContext.Session.GetString("AdminWelcomeShown") == null)
+            {
+                ViewBag.ShowWelcome = true;
+                HttpContext.Session.SetString("AdminWelcomeShown", "true");
+            }
+            else
+            {
+                ViewBag.ShowWelcome = false;
+            }
+
             // Varsayılan değerler
             ViewBag.Kullanici = HttpContext.Session.GetString("KULLANICI_ADI") ?? "Admin";
             ViewBag.Son7GunSiparis = 0;

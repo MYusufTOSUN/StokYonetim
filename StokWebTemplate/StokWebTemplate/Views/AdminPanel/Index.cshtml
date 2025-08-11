@@ -320,17 +320,22 @@
                                         animateCounter('counter3', @(ViewBag.CariSayisi ?? 0), 2000);
                                     }, 900);
 
-                                    // 🌟 WELCOME NOTIFICATION
-                                    setTimeout(() => {
-                                        showWelcomeMessage();
-                                    }, 1200);
+                                    // 🌟 WELCOME NOTIFICATION - sadece ilk girişte
+                                    @if (ViewBag.ShowWelcome == true)
+                                        {
+                                            <text>
+                                                                        setTimeout(() => {
+                                                    showWelcomeMessage();
+                                                                        }, 1200);
+                                            </text>
+                                    }
 
-                                    // 💫 PARTICLE EFFECT ON CARD HOVER
-                                    document.querySelectorAll('.card-hover').forEach(card => {
-                                        card.addEventListener('mouseenter', function () {
-                                            createParticles(this);
+                                        // 💫 PARTICLE EFFECT ON CARD HOVER
+                                        document.querySelectorAll('.card-hover').forEach(card => {
+                                            card.addEventListener('mouseenter', function () {
+                                                createParticles(this);
+                                            });
                                         });
-                                    });
 
                                     // 🎪 LOADING DOTS ANIMATION
                                     function showLoadingDots() {
@@ -345,25 +350,25 @@
                                         const welcomeDiv = document.createElement('div');
                                         welcomeDiv.className = 'alert alert-info position-fixed';
                                         welcomeDiv.style.cssText = `
-                                                                                                top: 20px; 
-                                                                                                right: 20px; 
-                                                                                                z-index: 9999; 
-                                                                                                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-                                                                                                border: none;
-                                                                                                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                                                                                                color: white;
-                                                                                                border-radius: 15px;
-                                                                                            `;
+                                                                                                                            top: 20px; 
+                                                                                                                            right: 20px; 
+                                                                                                                            z-index: 9999; 
+                                                                                                                            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                                                                                                                            border: none;
+                                                                                                                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                                                                                                            color: white;
+                                                                                                                            border-radius: 15px;
+                                                                                                                        `;
                                         welcomeDiv.innerHTML = `
-                                                                                                <div class="d-flex align-items-center">
-                                                                                                    <i class="fas fa-rocket me-2"></i>
-                                                                                                    <div>
-                                                                                                        <strong>Hoş Geldiniz!</strong><br>
-                                                                                                        <small>Admin paneline başarıyla giriş yaptınız</small>
-                                                                                                    </div>
-                                                                                                    <button type="button" class="btn-close btn-close-white ms-3" onclick="this.parentElement.parentElement.remove()"></button>
-                                                                                                </div>
-                                                                                            `;
+                                                                                                                            <div class="d-flex align-items-center">
+                                                                                                                                <i class="fas fa-rocket me-2"></i>
+                                                                                                                                <div>
+                                                                                                                                    <strong>Hoş Geldiniz!</strong><br>
+                                                                                                                                    <small>Admin paneline başarıyla giriş yaptınız</small>
+                                                                                                                                </div>
+                                                                                                                                <button type="button" class="btn-close btn-close-white ms-3" onclick="this.parentElement.parentElement.remove()"></button>
+                                                                                                                            </div>
+                                                                                                                        `;
 
                                         document.body.appendChild(welcomeDiv);
 
@@ -382,15 +387,15 @@
                                             setTimeout(() => {
                                                 const particle = document.createElement('div');
                                                 particle.style.cssText = `
-                                                                                                        position: absolute;
-                                                                                                        width: 4px;
-                                                                                                        height: 4px;
-                                                                                                        background: #fff;
-                                                                                                        border-radius: 50%;
-                                                                                                        pointer-events: none;
-                                                                                                        z-index: 1000;
-                                                                                                        animation: particleFloat 1s ease-out forwards;
-                                                                                                    `;
+                                                                                                                                    position: absolute;
+                                                                                                                                    width: 4px;
+                                                                                                                                    height: 4px;
+                                                                                                                                    background: #fff;
+                                                                                                                                    border-radius: 50%;
+                                                                                                                                    pointer-events: none;
+                                                                                                                                    z-index: 1000;
+                                                                                                                                    animation: particleFloat 1s ease-out forwards;
+                                                                                                                                `;
 
                                                 const rect = element.getBoundingClientRect();
                                                 particle.style.left = (rect.left + Math.random() * rect.width) + 'px';
@@ -427,22 +432,22 @@
                                 // 🎨 PARTICLE FLOAT ANIMATION
                                 const style = document.createElement('style');
                                 style.textContent = `
-                                                                                        @@keyframes particleFloat {
-                                                                                                        0% { 
-                                                                                                            opacity: 1; 
-                                                                                                            transform: translateY(0) scale(1); 
-                                                                                                        }
-                                                                                                        100% { 
-                                                                                                            opacity: 0; 
-                                                                                                            transform: translateY(-50px) scale(0.5); 
-                                                                                                        }
-                                                                                                    }
+                                                                                                                    @@keyframes particleFloat {
+                                                                                                                                        0% { 
+                                                                                                                                            opacity: 1; 
+                                                                                                                                            transform: translateY(0) scale(1); 
+                                                                                                                                        }
+                                                                                                                                        100% { 
+                                                                                                                                            opacity: 0; 
+                                                                                                                                            transform: translateY(-50px) scale(0.5); 
+                                                                                                                                        }
+                                                                                                                                    }
             
-                                                                                                    @@keyframes fadeOut {
-                                                                                                                    from { opacity: 1; transform: translateX(0); }
-                                                                                                                    to { opacity: 0; transform: translateX(100%); }
-                                                                                                                }
-                                                                                                            `;
+                                                                                                                                    @@keyframes fadeOut {
+                                                                                                                                                        from { opacity: 1; transform: translateX(0); }
+                                                                                                                                                        to { opacity: 0; transform: translateX(100%); }
+                                                                                                                                                    }
+                                                                                                                                                `;
                                         document.head.appendChild(style);
                                     </script>
 
@@ -488,16 +493,16 @@
                                             const notification = document.createElement('div');
                                             notification.className = `alert alert-${type === 'success' ? 'success' : 'danger'} position-fixed`;
                                             notification.style.cssText = `
-                                                                                                                    top: 20px; right: 20px; z-index: 9999; 
-                                                                                                                    border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-                                                                                                                    animation: slideInRight 0.5s ease-out;
-                                                                                                                `;
+                                                                                                                                                        top: 20px; right: 20px; z-index: 9999; 
+                                                                                                                                                        border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+                                                                                                                                                        animation: slideInRight 0.5s ease-out;
+                                                                                                                                                    `;
                                             notification.innerHTML = `
-                                                                                                                    <div class="d-flex align-items-center">
-                                                                                                                        <span>${message}</span>
-                                                                                                                        <button type="button" class="btn-close ms-3" onclick="this.parentElement.parentElement.remove()"></button>
-                                                                                                                    </div>
-                                                                                                                `;
+                                                                                                                                                        <div class="d-flex align-items-center">
+                                                                                                                                                            <span>${message}</span>
+                                                                                                                                                            <button type="button" class="btn-close ms-3" onclick="this.parentElement.parentElement.remove()"></button>
+                                                                                                                                                        </div>
+                                                                                                                                                    `;
 
                                             document.body.appendChild(notification);
                                             setTimeout(() => {
@@ -511,14 +516,14 @@
                                         // Add slide animations
                                         const notificationStyle = document.createElement('style');
                                         notificationStyle.textContent = `
-                                                                                                                @@keyframes slideInRight {
-                                                                                                                            from { opacity: 0; transform: translateX(100%); }
-                                                                                                                            to { opacity: 1; transform: translateX(0); }
-                                                                                                                        }
-                                                                                                                        @@keyframes slideOutRight {
-                                                                                                                                    from { opacity: 1; transform: translateX(0); }
-                                                                                                                                    to { opacity: 0; transform: translateX(100%); }
-                                                                                                                                }
-                                                                                                                            `;
+                                                                                                                                                    @@keyframes slideInRight {
+                                                                                                                                                                    from { opacity: 0; transform: translateX(100%); }
+                                                                                                                                                                    to { opacity: 1; transform: translateX(0); }
+                                                                                                                                                                }
+                                                                                                                                                                @@keyframes slideOutRight {
+                                                                                                                                                                                from { opacity: 1; transform: translateX(0); }
+                                                                                                                                                                                to { opacity: 0; transform: translateX(100%); }
+                                                                                                                                                                            }
+                                                                                                                                                                        `;
                                                 document.head.appendChild(notificationStyle);
                                             </script>

@@ -597,13 +597,18 @@
                         });
                     }, 300);
 
-                    // Show welcome notification (desktop only)
-                    setTimeout(() => {
-                        if (window.showPremiumNotification) {
-                            showPremiumNotification('Dashboard yüklendi!', 'success', 3000);
-                        }
-                    }, 1000);
-                } else {
+                    // Show welcome notification (desktop only) - sadece ilk girişte
+                    @if (ViewBag.ShowWelcome == true)
+                        {
+                            <text>
+                                    setTimeout(() => {
+                                        if (window.showPremiumNotification) {
+                                    showPremiumNotification('Hoşgeldiniz! Dashboard yüklendi.', 'success', 4000);
+                                        }
+                                    }, 1000);
+                            </text>
+                    }
+                        } else {
                     // Mobile - immediately show final values
                     const counters = document.querySelectorAll('.premium-stat-number[data-target]');
                     counters.forEach(counter => {
