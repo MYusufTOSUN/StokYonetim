@@ -1,0 +1,245 @@
+﻿@model System.Data.DataTable
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Cari Logları";
+    var cariID = ViewBag.CariID;
+}
+
+<!-- 🎨 PREMIUM LOG PAGE STYLES -->
+<style>
+    /* 🎯 ANIMATIONS */
+    .fade-in { animation: fadeIn 0.8s ease-out; }
+    .fade-in-up { animation: fadeInUp 0.8s ease-out; }
+    .slide-in { animation: slideIn 0.6s ease-out; }
+    .bounce-in { animation: bounceIn 0.8s ease-out; }
+    
+    @@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @@keyframes slideIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+    @@keyframes bounceIn { 
+        0% { opacity: 0; transform: scale(0.3); }
+        50% { opacity: 1; transform: scale(1.05); }
+        70% { transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+    
+    /* 📊 LOG HEADER */
+    .log-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        padding: 2rem;
+        color: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .log-header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+        transform: rotate(45deg);
+        animation: shine 4s infinite;
+    }
+    
+    @@keyframes shine {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    
+    /* 🎯 ACTIONS SECTION */
+    .actions-section {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .btn-modern {
+        border-radius: 12px;
+        padding: 12px 24px;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .btn-modern:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    
+    .btn-modern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s;
+    }
+    
+    .btn-modern:hover::before { left: 100%; }
+    
+    /* 📋 LOG TABLE */
+    .log-table {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        background: #fff;
+    }
+    
+    .log-table thead th {
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 20px 15px;
+        border: none;
+        position: relative;
+    }
+    
+    .log-table thead th::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    
+    .log-table tbody tr {
+        transition: all 0.3s ease;
+        border: none;
+    }
+    
+    .log-table tbody tr:hover {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        transform: translateX(8px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+    .log-table tbody td {
+        padding: 18px 15px;
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        font-weight: 500;
+    }
+    
+    /* 🎯 STAGGER DELAYS */
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    
+    /* 📱 RESPONSIVE */
+    @@media (max-width: 768px) {
+        .log-header { padding: 1.5rem; }
+        .actions-section { padding: 1rem; }
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- 📊 LOG HEADER -->
+    <div class="log-header fade-in">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-5 fw-bold mb-2">📋 Cari Logları</h1>
+                <p class="lead mb-0 opacity-90">Cari hareketlerini detaylı olarak görüntüleyin</p>
+            </div>
+            <div class="col-md-4 text-end">
+                <i class="fas fa-history fa-3x opacity-75"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎯 ACTIONS SECTION -->
+    <div class="actions-section fade-in-up stagger-1">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="javascript:history.back()" class="btn btn-secondary btn-modern">
+                <i class="fas fa-arrow-left me-2"></i>Geri Dön
+            </a>
+            <button onclick="exportCariLogCsv(@cariID)" class="btn btn-success btn-modern">
+                <i class="fas fa-file-csv me-2"></i>CSV İndir
+            </button>
+        </div>
+    </div>
+
+    <!-- 📋 LOG TABLE -->
+    <div class="log-table fade-in-up stagger-2">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    @foreach (System.Data.DataColumn col in Model.Columns)
+                    {
+                        <th><i class="fas fa-columns me-2"></i>@col.ColumnName.Replace("_", " ")</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (System.Data.DataRow row in Model.Rows)
+                {
+                    <tr class="slide-in">
+                        @foreach (var item in row.ItemArray)
+                        {
+                            <td>
+                                <span class="badge bg-light text-dark">@item</span>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- 🚀 JAVASCRIPT -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Loading animation for CSV export
+        window.exportCariLogCsv = function(id) {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>İndiriliyor...';
+            btn.disabled = true;
+            
+            fetch('@Url.Action("ExportCariLogCsv", "AdminCari")?id=' + id)
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob();
+                    }
+                    throw new Error('CSV export failed');
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = 'cari_log_' + id + '.csv';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    showNotification('✅ Cari logları başarıyla indirildi!', 'success');
+                })
+                .catch(error => {
+                    console.error('Export error:', error);
+                    showNotification('❌ CSV indirme hatası!', 'error');
+                })
+                .finally(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+        };
+    });
+</script>

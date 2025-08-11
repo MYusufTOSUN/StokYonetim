@@ -1,0 +1,397 @@
+﻿@using System.Data
+@model DataTable
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Cari Yönetimi";
+    int sayfaNo = ViewBag.SayfaNo ?? 1;
+    int toplamSayfa = ViewBag.ToplamSayfa ?? 1;
+    string seciliTip = ViewBag.Tip ?? "T";
+}
+
+<!-- 🎨 PREMIUM CARI PAGE STYLES -->
+<style>
+    /* 🎯 ANIMATIONS */
+    .fade-in { animation: fadeIn 0.8s ease-out; }
+    .fade-in-up { animation: fadeInUp 0.8s ease-out; }
+    .zoom-in { animation: zoomIn 0.6s ease-out; }
+    
+    @@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @@keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+    
+    /* 🏢 COMPANY CARD DESIGN */
+    .company-card { 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+        border: none; 
+        border-radius: 20px; 
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .company-card:hover { 
+        transform: translateY(-10px) scale(1.02); 
+        box-shadow: 0 25px 50px rgba(0,0,0,0.2); 
+    }
+    
+    /* 📊 MODERN TABLE */
+    .cari-table { 
+        border-radius: 20px; 
+        overflow: hidden; 
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+        background: #fff;
+    }
+    .cari-table thead th { 
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); 
+        color: white; 
+        font-weight: 700; 
+        text-transform: uppercase; 
+        letter-spacing: 1px; 
+        padding: 20px 15px;
+        border: none;
+        position: relative;
+    }
+    .cari-table thead th::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #667eea, #764ba2);
+    }
+    .cari-table tbody tr { 
+        transition: all 0.3s ease; 
+        border: none;
+        cursor: pointer;
+    }
+    .cari-table tbody tr:hover { 
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); 
+        transform: translateX(8px); 
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+    }
+    .cari-table tbody td { 
+        padding: 18px 15px; 
+        vertical-align: middle; 
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        font-weight: 500;
+    }
+    
+    /* 🏷️ COMPANY BADGES */
+    .company-badge { 
+        padding: 8px 16px; 
+        border-radius: 25px; 
+        font-size: 0.9em; 
+        font-weight: 700; 
+        text-transform: uppercase; 
+        letter-spacing: 0.5px;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+    }
+    .company-badge::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        animation: shine 2s infinite;
+    }
+    @@keyframes shine {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    .badge-alim { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; }
+    .badge-satim { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+    
+    /* 🎪 ACTION BUTTONS */
+    .action-btn { 
+        border-radius: 12px; 
+        padding: 10px 15px; 
+        font-weight: 600; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        position: relative; 
+        overflow: hidden;
+        margin: 0 2px;
+    }
+    .action-btn:hover { 
+        transform: translateY(-3px) scale(1.1); 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2); 
+    }
+    .action-btn::before { 
+        content: ''; 
+        position: absolute; 
+        top: 0; 
+        left: -100%; 
+        width: 100%; 
+        height: 100%; 
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); 
+        transition: left 0.5s; 
+    }
+    .action-btn:hover::before { left: 100%; }
+    
+    /* 🎯 STAGGER DELAYS */
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+    .stagger-4 { animation-delay: 0.4s; }
+    
+    /* 📱 RESPONSIVE */
+    @@media (max-width: 768px) {
+        .cari-table { font-size: 0.9em; }
+        .cari-table thead th, .cari-table tbody td { padding: 12px 8px; }
+        .company-badge { font-size: 0.8em; padding: 6px 12px; }
+    }
+</style>
+
+<div class="container-fluid">
+    <div id="messageArea"></div>
+    
+    <!-- 🏢 HEADER SECTION -->
+    <div class="text-center mb-5 fade-in">
+        <h1 class="display-4 fw-bold text-primary">🏢 Cari Yönetimi</h1>
+        <p class="lead text-muted">Müşteri ve tedarikçi bilgilerinizi yönetin</p>
+        <div class="bg-primary" style="height: 3px; width: 120px; margin: 0 auto; border-radius: 2px;"></div>
+    </div>
+
+    <!-- 🎛️ FILTER & ACTIONS -->
+    <div class="company-card mb-4 fade-in-up stagger-1">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <form asp-action="Index" method="get" class="d-flex align-items-center gap-3" onchange="this.submit()">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-filter text-white fa-lg"></i>
+                            <label class="text-white fw-bold mb-0">Filtrele:</label>
+                            <select name="tip" class="form-select" style="border-radius: 12px; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.9);">
+                                @Html.Raw($"<option value='T' {(seciliTip == "T" ? "selected" : "")}>🔄 Tümü</option>")
+                                @Html.Raw($"<option value='A' {(seciliTip == "A" ? "selected" : "")}>📥 Alım Carisi</option>")
+                                @Html.Raw($"<option value='V' {(seciliTip == "V" ? "selected" : "")}>📤 Satım Carisi</option>")
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6 text-end">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button onclick="exportCariCsv('@seciliTip')" class="btn btn-light action-btn">
+                            <i class="fas fa-file-csv me-2"></i>CSV İndir
+                        </button>
+                        <a asp-action="Yeni" class="btn btn-light action-btn">
+                            <i class="fas fa-plus me-2"></i>Yeni Cari
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📊 COMPANIES TABLE -->
+    <div class="cari-table fade-in-up stagger-2">
+        <table class="table table-hover mb-0">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-hashtag me-2"></i>ID</th>
+                    <th><i class="fas fa-building me-2"></i>Şirket Adı</th>
+                    <th><i class="fas fa-tags me-2"></i>Cari Tipi</th>
+                    <th><i class="fas fa-code me-2"></i>Özel Kod</th>
+                    <th><i class="fas fa-cogs me-2"></i>İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Rows.Count > 0)
+                {
+                    foreach (DataRow row in Model.Rows)
+                    {
+                        var cariTip = row["CARI_TIP"].ToString();
+                        <tr class="zoom-in">
+                            <td>
+                                <span class="badge bg-primary fs-6">@row["CARI_ID"]</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary rounded-circle d-flex align-items-center justify-content-center me-3" 
+                                         style="width: 40px; height: 40px;">
+                                        <i class="fas fa-building text-white"></i>
+                                    </div>
+                                    <div>
+                                        <strong class="text-primary">@row["CARI_SIRKET"]</strong>
+                                        <br><small class="text-muted">Cari Firma</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="company-badge @(cariTip == "A" ? "badge-alim" : "badge-satim")">
+                                    @(cariTip == "A" ? "📥 Alım Carisi" : "📤 Satım Carisi")
+                                </span>
+                            </td>
+                            <td>
+                                <code class="bg-light text-dark p-2 rounded">@row["OZEL_KOD"]</code>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-primary action-btn" asp-action="Log" asp-route-id="@row["CARI_ID"]" title="Detayları Görüntüle">
+                                    <i class="fas fa-eye me-1"></i>Görüntüle
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center py-5">
+                            <div class="text-muted">
+                                <i class="fas fa-building fa-4x mb-4 opacity-50"></i>
+                                <h4>🏢 Cari Bulunamadı</h4>
+                                <p class="mb-0">Seçili kriterlere uygun cari firma bulunmuyor.</p>
+                                <a asp-action="Yeni" class="btn btn-primary mt-3">
+                                    <i class="fas fa-plus me-2"></i>İlk Cariyi Ekle
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 📄 MODERN PAGINATION -->
+    @if (toplamSayfa > 1)
+    {
+        <div class="pagination-container" data-total-pages="@toplamSayfa">
+            <nav>
+                <ul class="pagination">
+                    @if (sayfaNo > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?tip=@seciliTip&sayfa=@(sayfaNo - 1)" aria-label="Önceki">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                    }
+                    
+                    @{
+                        int startPage = Math.Max(1, sayfaNo - 2);
+                        int endPage = Math.Min(toplamSayfa, sayfaNo + 2);
+                        
+                        if (startPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="?tip=@seciliTip&sayfa=1">1</a>
+                            </li>
+                            if (startPage > 2)
+                            {
+                                <li class="page-item disabled">
+                                    <span class="pagination-ellipsis">...</span>
+                                </li>
+                            }
+                        }
+                        
+                        for (int i = startPage; i <= endPage; i++)
+                        {
+                            <li class="page-item @(i == sayfaNo ? "active" : "")">
+                                <a class="page-link" href="?tip=@seciliTip&sayfa=@i">@i</a>
+                            </li>
+                        }
+                        
+                        if (endPage < toplamSayfa)
+                        {
+                            if (endPage < toplamSayfa - 1)
+                            {
+                                <li class="page-item disabled">
+                                    <span class="pagination-ellipsis">...</span>
+                                </li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="?tip=@seciliTip&sayfa=@toplamSayfa">@toplamSayfa</a>
+                            </li>
+                        }
+                    }
+                    
+                    @if (sayfaNo < toplamSayfa)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?tip=@seciliTip&sayfa=@(sayfaNo + 1)" aria-label="Sonraki">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            <div class="pagination-info">
+                <small class="text-muted">📄 Sayfa @sayfaNo / @toplamSayfa</small>
+            </div>
+        </div>
+    }
+
+    <!-- 📊 SUMMARY STATISTICS -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-lg fade-in-up stagger-3" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
+                <div class="card-body text-center text-white p-4">
+                    <i class="fas fa-arrow-down fa-2x mb-3"></i>
+                    <h5>Alım Carisi</h5>
+                    <h3>@(Model?.AsEnumerable().Count(r => r["CARI_TIP"].ToString() == "A") ?? 0)</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-lg fade-in-up stagger-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div class="card-body text-center text-white p-4">
+                    <i class="fas fa-arrow-up fa-2x mb-3"></i>
+                    <h5>Satım Carisi</h5>
+                    <h3>@(Model?.AsEnumerable().Count(r => r["CARI_TIP"].ToString() == "V") ?? 0)</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-lg fade-in-up stagger-4" style="background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);">
+                <div class="card-body text-center text-white p-4">
+                    <i class="fas fa-building fa-2x mb-3"></i>
+                    <h5>Toplam Cari</h5>
+                    <h3>@(Model?.Rows.Count ?? 0)</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🚀 JAVASCRIPT FUNCTIONS -->
+<script>
+    // CSV Export Function
+    function exportCariCsv(tip) {
+        const btn = event.target;
+        const originalText = btn.innerHTML;
+        
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>İndiriliyor...';
+        btn.disabled = true;
+        
+        fetch(`/AdminCari/ExportCariCsv?tip=${tip}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Export failed');
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `cariler_${tip}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                showNotification('✅ Cari listesi başarıyla indirildi!', 'success');
+            })
+            .catch(error => {
+                console.error('Export error:', error);
+                showNotification('❌ CSV indirme hatası!', 'error');
+            })
+            .finally(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+    }
+</script>

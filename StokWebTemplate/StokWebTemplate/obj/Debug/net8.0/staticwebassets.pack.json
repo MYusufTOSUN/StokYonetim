@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\StokWebTemplate.bundle.scp.css",
+      "PackagePath": "staticwebassets\\StokWebTemplate.lhc5lij3l6.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\dattaable-style.css",
+      "PackagePath": "staticwebassets\\css\\dattaable-style.css"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\pagination.css",
+      "PackagePath": "staticwebassets\\css\\pagination.css"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\sidebar.css",
+      "PackagePath": "staticwebassets\\css\\sidebar.css"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\dattaable-core.js",
+      "PackagePath": "staticwebassets\\js\\dattaable-core.js"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\pagination.js",
+      "PackagePath": "staticwebassets\\js\\pagination.js"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\premium-animations.js",
+      "PackagePath": "staticwebassets\\js\\premium-animations.js"
+    },
+    {
+      "Id": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\sidebar.js",
+      "PackagePath": "staticwebassets\\js\\sidebar.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StokWebTemplate.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.StokWebTemplate.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.StokWebTemplate.props",
+      "PackagePath": "build\\StokWebTemplate.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.StokWebTemplate.props",
+      "PackagePath": "buildMultiTargeting\\StokWebTemplate.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.StokWebTemplate.props",
+      "PackagePath": "buildTransitive\\StokWebTemplate.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

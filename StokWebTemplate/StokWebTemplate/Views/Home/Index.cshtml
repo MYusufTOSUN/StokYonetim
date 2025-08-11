@@ -1,0 +1,634 @@
+﻿@{
+    ViewData["Title"] = "Dashboard - Ana Sayfa";
+}
+
+<!-- ✅ Dashboard Header -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="page-header">
+            <h1 class="page-title">Dashboard</h1>
+            <p class="page-subtitle text-muted">StokWeb Yönetim Paneli</p>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Mobile-Optimized Statistics Cards -->
+<div class="row mb-4" id="stats-cards">
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+        <div class="card premium-stat-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="premium-icon-wrapper bg-gradient-primary">
+                            <i data-feather="package" class="premium-icon"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h4 class="premium-stat-number mb-1" data-target="1425">0</h4>
+                        <p class="premium-stat-label mb-0">Toplam Ürün</p>
+                        <div class="premium-stat-trend">
+                            <i data-feather="trending-up" class="trend-icon text-success"></i>
+                            <span class="trend-text">+12.5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer premium-card-footer">
+                <small class="text-muted">Son 30 günde</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+        <div class="card premium-stat-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="premium-icon-wrapper bg-gradient-success">
+                            <i data-feather="shopping-cart" class="premium-icon"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h4 class="premium-stat-number mb-1" data-target="342">0</h4>
+                        <p class="premium-stat-label mb-0">Aktif Sipariş</p>
+                        <div class="premium-stat-trend">
+                            <i data-feather="trending-up" class="trend-icon text-success"></i>
+                            <span class="trend-text">+8.2%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer premium-card-footer">
+                <small class="text-muted">Bu hafta</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+        <div class="card premium-stat-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="premium-icon-wrapper bg-gradient-warning">
+                            <i data-feather="users" class="premium-icon"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h4 class="premium-stat-number mb-1" data-target="1258">0</h4>
+                        <p class="premium-stat-label mb-0">Müşteri</p>
+                        <div class="premium-stat-trend">
+                            <i data-feather="trending-up" class="trend-icon text-success"></i>
+                            <span class="trend-text">+5.7%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer premium-card-footer">
+                <small class="text-muted">Toplam kayıtlı</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6 col-sm-6 mb-3">
+        <div class="card premium-stat-card">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="premium-icon-wrapper bg-gradient-info">
+                            <i data-feather="dollar-sign" class="premium-icon"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-4">
+                        <h4 class="premium-stat-number mb-1">₺45,678</h4>
+                        <p class="premium-stat-label mb-0">Günlük Satış</p>
+                        <div class="premium-stat-trend">
+                            <i data-feather="trending-up" class="trend-icon text-success"></i>
+                            <span class="trend-text">+18.9%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer premium-card-footer">
+                <small class="text-muted">Bugün</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Charts and Recent Activity -->
+<div class="row">
+    <!-- Sales Chart -->
+    <div class="col-lg-8 col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Satış Grafiği</h5>
+            </div>
+            <div class="card-body">
+                <div id="salesChart" style="height: 350px;">
+                    <div class="d-flex align-items-center justify-content-center h-100">
+                        <div class="text-center">
+                            <i data-feather="bar-chart-2" style="width: 48px; height: 48px;"
+                                class="text-muted mb-3"></i>
+                            <p class="text-muted">Satış verileri yükleniyor...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="col-lg-4 col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Son Siparişler</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item px-0">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="avatar-xs rounded-circle bg-success d-flex align-items-center justify-content-center">
+                                    <i data-feather="check" class="text-white" style="width: 12px; height: 12px;"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">SP-2024-001</h6>
+                                <p class="text-muted mb-0 small">Ahmet Yılmaz - ₺1,250</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item px-0">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="avatar-xs rounded-circle bg-warning d-flex align-items-center justify-content-center">
+                                    <i data-feather="clock" class="text-white" style="width: 12px; height: 12px;"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">SP-2024-002</h6>
+                                <p class="text-muted mb-0 small">Fatma Kaya - ₺850</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item px-0">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="avatar-xs rounded-circle bg-info d-flex align-items-center justify-content-center">
+                                    <i data-feather="truck" class="text-white" style="width: 12px; height: 12px;"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">SP-2024-003</h6>
+                                <p class="text-muted mb-0 small">Mehmet Demir - ₺2,100</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item px-0">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0">
+                                <div
+                                    class="avatar-xs rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                    <i data-feather="shopping-bag" class="text-white"
+                                        style="width: 12px; height: 12px;"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h6 class="mb-1">SP-2024-004</h6>
+                                <p class="text-muted mb-0 small">Ayşe Özkan - ₺675</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <a asp-controller="Siparis" asp-action="Index" class="btn btn-outline-primary btn-sm">
+                        Tüm Siparişleri Görüntüle
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Recent Activity & Quick Actions -->
+<div class="row mt-4">
+    <div class="col-lg-6 col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Son Aktiviteler</h5>
+            </div>
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-success"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Yeni sipariş alındı</h6>
+                            <p class="timeline-text text-muted">SP-2024-001 numaralı sipariş onaylandı</p>
+                            <small class="text-muted">2 dakika önce</small>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-warning"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Stok azaldı</h6>
+                            <p class="timeline-text text-muted">PRD-001 ürününde stok kritik seviyede</p>
+                            <small class="text-muted">15 dakika önce</small>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-info"></div>
+                        <div class="timeline-content">
+                            <h6 class="timeline-title">Yeni müşteri kaydı</h6>
+                            <p class="timeline-text text-muted">Mehmet Yılmaz sisteme kaydoldu</p>
+                            <small class="text-muted">1 saat önce</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Hızlı İşlemler</h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-2">
+                    <div class="col-sm-6 col-12 mb-2">
+                        <a asp-controller="Siparis" asp-action="Create"
+                            class="btn btn-outline-primary w-100 mobile-action-btn">
+                            <i data-feather="plus-circle" class="me-2"></i>Yeni Sipariş
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-12 mb-2">
+                        <a asp-controller="Stok" asp-action="Create"
+                            class="btn btn-outline-success w-100 mobile-action-btn">
+                            <i data-feather="package" class="me-2"></i>Ürün Ekle
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-12 mb-2">
+                        <a asp-controller="Cari" asp-action="Create"
+                            class="btn btn-outline-warning w-100 mobile-action-btn">
+                            <i data-feather="user-plus" class="me-2"></i>Müşteri Ekle
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-12 mb-2">
+                        <a asp-controller="AdminAnaliz" asp-action="Index"
+                            class="btn btn-outline-info w-100 mobile-action-btn">
+                            <i data-feather="bar-chart" class="me-2"></i>Raporlar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+        /* Premium Dashboard Styles */
+        .premium-stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .premium-stat-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .premium-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bg-gradient-primary {
+            background: var(--gradient-primary);
+        }
+
+        .bg-gradient-success {
+            background: var(--gradient-success);
+        }
+
+        .bg-gradient-warning {
+            background: var(--gradient-warning);
+        }
+
+        .bg-gradient-info {
+            background: var(--gradient-info);
+        }
+
+        .premium-icon {
+            width: 24px !important;
+            height: 24px !important;
+            color: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .premium-stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: #1e293b;
+            line-height: 1.2;
+        }
+
+        .premium-stat-label {
+            font-weight: 600;
+            color: #64748b;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .premium-stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .trend-icon {
+            width: 16px !important;
+            height: 16px !important;
+        }
+
+        .trend-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: #10b981;
+        }
+
+        .premium-card-footer {
+            background: rgba(248, 250, 252, 0.5);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 12px 25px;
+        }
+
+        .page-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        .avatar-sm {
+            width: 40px;
+            height: 40px;
+        }
+
+        .avatar-xs {
+            width: 24px;
+            height: 24px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #e9ecef;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -21px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #e9ecef;
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .timeline-title {
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .timeline-text {
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .page-header {
+            margin-bottom: 0;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* Premium Timeline Styles */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: -24px;
+            top: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-title {
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .timeline-text {
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* Mobile-Optimized Quick Actions */
+        .mobile-action-btn {
+            padding: 12px 16px !important;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .mobile-action-btn i {
+            font-size: 16px !important;
+            vertical-align: middle;
+        }
+
+
+
+        /* Animation for counter */
+        @@keyframes countUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .premium-stat-number {
+                animation: countUp 0.8s ease-out;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Optimized for mobile - only animate on larger screens or good connections
+                const isMobile = window.innerWidth <= 768;
+                const isSlowConnection = navigator.connection && navigator.connection.effectiveType === 'slow-2g';
+
+                if (!isMobile && !isSlowConnection) {
+                    // Counter animation for stats
+                    setTimeout(() => {
+                        const counters = document.querySelectorAll('.premium-stat-number[data-target]');
+                        counters.forEach(counter => {
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            animateCounterMobile(counter, 0, target, 1200);
+                        });
+                    }, 300);
+
+                    // Show welcome notification (desktop only)
+                    setTimeout(() => {
+                        if (window.showPremiumNotification) {
+                            showPremiumNotification('Dashboard yüklendi!', 'success', 3000);
+                        }
+                    }, 1000);
+                } else {
+                    // Mobile - immediately show final values
+                    const counters = document.querySelectorAll('.premium-stat-number[data-target]');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        counter.textContent = target.toLocaleString('tr-TR');
+                    });
+                }
+            });
+
+            function animateCounterMobile(element, start, end, duration) {
+                const startTime = performance.now();
+
+                function updateCounter(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const current = Math.floor(start + (end - start) * progress);
+
+                    element.textContent = current.toLocaleString('tr-TR');
+
+                    if (progress < 1) {
+                        requestAnimationFrame(updateCounter);
+                    }
+                }
+
+                requestAnimationFrame(updateCounter);
+            }
+        </script>
+    }
