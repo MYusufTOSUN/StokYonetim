@@ -1,0 +1,312 @@
+﻿@using System.Data
+@using System.Linq
+@model DataTable
+
+@{
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+    ViewBag.Title = "Sipariş Görüntüleme";
+    string yil = ViewBag.Yil as string ?? "T";
+    string tur = ViewBag.Tur as string ?? "T";
+    int sayfaNo = ViewBag.SayfaNo ?? 1;
+    int toplamSayfa = ViewBag.ToplamSayfa ?? 1;
+}
+
+<!-- 🎨 PREMIUM ORDER PAGE STYLES -->
+<style>
+    /* 🎯 ANIMATIONS */
+    .fade-in { animation: fadeIn 0.8s ease-out; }
+    .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+
+    @@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* 🛒 ORDERS HEADER */
+    .orders-header {
+        background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+        border-radius: 20px;
+        padding: 2.5rem;
+        color: white;
+        margin-bottom: 2rem;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    /* 🎛️ CONTROLS */
+    .controls-container {
+        background: #fff;
+        border-radius: 20px;
+        padding: 1.5rem;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        margin-bottom: 2rem;
+    }
+
+    /* 📦 ORDER TABLE */
+    .order-table {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .order-table thead th {
+        background: #343a40;
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 3px solid #56ab2f;
+        padding: 15px;
+    }
+
+    .order-table tbody tr {
+        transition: all 0.3s ease;
+    }
+
+    .order-table tbody tr:hover {
+        background-color: #f8f9fa;
+        transform: scale(1.02);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        z-index: 10;
+        position: relative;
+    }
+    
+    .order-table tbody td { padding: 15px; vertical-align: middle; }
+
+    .order-type-badge {
+        padding: 8px 12px;
+        border-radius: 25px;
+        font-weight: 700;
+        font-size: 0.8em;
+    }
+    .badge-alinan { background: linear-gradient(135deg, #28a745, #218838); color: white; }
+    .badge-verilen { background: linear-gradient(135deg, #dc3545, #c82333); color: white; }
+
+    /* 📄 PAGINATION */
+    .pagination .page-item .page-link {
+        border-radius: 50% !important;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+    }
+    .pagination .page-item.active .page-link {
+        background-color: #56ab2f;
+        border-color: #56ab2f;
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(86, 171, 47, 0.4);
+    }
+</style>
+
+<div class="container-fluid">
+    <div id="messageArea"></div>
+
+    <!-- 🛒 ORDERS HEADER -->
+    <div class="orders-header fade-in">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="display-5 fw-bold mb-2">🛒 Sipariş Görüntüleme</h1>
+                <p class="lead mb-0 opacity-90">Tüm siparişlerinizi buradan görüntüleyin.</p>
+            </div>
+            <i class="fas fa-shopping-cart fa-4x opacity-75"></i>
+        </div>
+    </div>
+
+    <!-- 🎛️ FILTER SECTION -->
+    <div class="card border-0 shadow-lg mb-4 fade-in-up stagger-1" style="border-radius: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <form asp-action="Index" method="get" class="d-flex align-items-center gap-3" onchange="this.submit()">
+                        <input type="hidden" name="sayfa" value="1" />
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-calendar-alt text-white"></i>
+                            <label class="text-white fw-bold mb-0">Yıl:</label>
+                            <select name="yil" class="form-select" style="border-radius: 12px; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.9);">
+                                @Html.Raw($"<option value='T' {(yil == "T" ? "selected" : "")}>🗓️ Tüm Yıllar</option>")
+                                @for (int i = DateTime.Now.Year; i >= 2020; i--)
+                                {
+                                    @Html.Raw($"<option value='{i}' {(yil == i.ToString() ? "selected" : "")}>📅 {i}</option>")
+                                }
+                            </select>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="fas fa-tags text-white"></i>
+                            <label class="text-white fw-bold mb-0">Tür:</label>
+                            <select name="tur" class="form-select" style="border-radius: 12px; border: 2px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.9);">
+                                @Html.Raw($"<option value='T' {(tur == "T" ? "selected" : "")}>🔄 Tümü</option>")
+                                @Html.Raw($"<option value='A' {(tur == "A" ? "selected" : "")}>📥 Alım</option>")
+                                @Html.Raw($"<option value='V' {(tur == "V" ? "selected" : "")}>📤 Satım</option>")
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button onclick="exportSiparisCsv('@yil', '@tur')" class="btn btn-light action-btn">
+                            <i class="fas fa-file-csv me-2"></i>CSV İndir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📦 ORDER TABLE -->
+    <div class="order-table fade-in-up stagger-2">
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-hashtag me-2"></i>ID</th>
+                        <th><i class="fas fa-building me-2"></i>Cari Şirket</th>
+                        <th><i class="fas fa-cube me-2"></i>Stok Adı</th>
+                        <th><i class="fas fa-boxes me-2"></i>Miktar</th>
+                        <th><i class="fas fa-calendar-alt me-2"></i>Tarih</th>
+                        <th><i class="fas fa-exchange-alt me-2"></i>Tür</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in Model.Rows)
+                        {
+                            <tr>
+                                <td><span class="badge bg-dark fs-6">@row["SIPARIS_ID"]</span></td>
+                                <td>@row["CARI_SIRKET"]</td>
+                                <td>@row["STOK_AD"]</td>
+                                <td><strong>@row["MIKTAR"]</strong></td>
+                                <td>@Convert.ToDateTime(row["SIPARIS_TARIHI"]).ToString("dd.MM.yyyy")</td>
+                                <td>
+                                    @if (row["SIPARIS_TUR"].ToString() == "A")
+                                    {
+                                        <span class="order-type-badge badge-alinan"><i class="fas fa-arrow-down me-2"></i>Alınan</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="order-type-badge badge-verilen"><i class="fas fa-arrow-up me-2"></i>Verilen</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+                                <h4>Kayıtlı Sipariş Bulunamadı</h4>
+                                <p class="text-muted">Filtre kriterlerine uygun sipariş bulunmuyor.</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 📄 MODERN PAGINATION -->
+    @if (toplamSayfa > 1)
+    {
+        <div class="pagination-container" data-total-pages="@toplamSayfa">
+            <nav>
+                <ul class="pagination">
+                    @if (sayfaNo > 1)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@(sayfaNo - 1)" aria-label="Önceki">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                    }
+                    
+                    @{
+                        int startPage = Math.Max(1, sayfaNo - 2);
+                        int endPage = Math.Min(toplamSayfa, sayfaNo + 2);
+                        
+                        if (startPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=1">1</a>
+                            </li>
+                            if (startPage > 2)
+                            {
+                                <li class="page-item disabled">
+                                    <span class="pagination-ellipsis">...</span>
+                                </li>
+                            }
+                        }
+                        
+                        for (int i = startPage; i <= endPage; i++)
+                        {
+                            <li class="page-item @(i == sayfaNo ? "active" : "")">
+                                <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@i">@i</a>
+                            </li>
+                        }
+                        
+                        if (endPage < toplamSayfa)
+                        {
+                            if (endPage < toplamSayfa - 1)
+                            {
+                                <li class="page-item disabled">
+                                    <span class="pagination-ellipsis">...</span>
+                                </li>
+                            }
+                            <li class="page-item">
+                                <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@toplamSayfa">@toplamSayfa</a>
+                            </li>
+                        }
+                    }
+                    
+                    @if (sayfaNo < toplamSayfa)
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@(sayfaNo + 1)" aria-label="Sonraki">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+            <div class="pagination-info">
+                <small class="text-muted">📄 Sayfa @sayfaNo / @toplamSayfa</small>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function exportSiparisCsv(yil, tur) {
+            const btn = event.target;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>İndiriliyor...';
+            btn.disabled = true;
+
+            fetch(`@Url.Action("ExportSiparisCsv", "PersonelSiparis")?yil=${yil}&tur=${tur}`)
+                .then(response => {
+                    if (response.ok) return response.blob();
+                    throw new Error('CSV dışa aktarma başarısız oldu.');
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.download = 'siparisler.csv';
+                    a.href = url;
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    window.URL.revokeObjectURL(url);
+                    showNotification('✅ Sipariş listesi başarıyla indirildi!', 'success');
+                })
+                .catch(error => showNotification('❌ ' + error.message, 'error'))
+                .finally(() => {
+                    btn.innerHTML = '<i class="fas fa-file-csv me-2"></i>CSV İndir';
+                    btn.disabled = false;
+                });
+        }
+    </script>
+}

@@ -1,0 +1,293 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\wwwroot\\css\\pagination.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\wwwroot\\css\\pagination.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\wwwroot\\css\\sidebar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\wwwroot\\css\\sidebar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\wwwroot\\css\\dattaable-style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\wwwroot\\css\\dattaable-style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\wwwroot\\js\\pagination.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\wwwroot\\js\\pagination.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\views\\stok\\adminstok\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\views\\stok\\adminstok\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\wwwroot\\js\\dattaable-core.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\wwwroot\\js\\dattaable-core.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\views\\stok\\adminstok\\log.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\views\\stok\\adminstok\\log.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\controllers\\admin\\adminanalizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\controllers\\admin\\adminanalizcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\wwwroot\\js\\premium-animations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\wwwroot\\js\\premium-animations.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\wwwroot\\js\\sidebar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\wwwroot\\js\\sidebar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\views\\adminpersonel\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\views\\adminpersonel\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\views\\cari\\personelcari\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\views\\cari\\personelcari\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\views\\stok\\personelstok\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\views\\stok\\personelstok\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\controllers\\admin\\adminstokcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\controllers\\admin\\adminstokcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\controllers\\admin\\adminpanelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\controllers\\admin\\adminpanelcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|c:\\users\\tosun\\source\\repos\\stokwebtemplate\\stokwebtemplate\\controllers\\giriscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3776ADA5-837A-43E2-90B0-36C2A5351B6B}|StokWebTemplate\\StokWebTemplate.csproj|solutionrelative:stokwebtemplate\\controllers\\giriscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "pagination.css",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\pagination.css",
+              "RelativeDocumentMoniker": "StokWebTemplate\\wwwroot\\css\\pagination.css",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\pagination.css",
+              "RelativeToolTip": "StokWebTemplate\\wwwroot\\css\\pagination.css",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-08-08T12:58:35.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "sidebar.css",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\sidebar.css",
+              "RelativeDocumentMoniker": "StokWebTemplate\\wwwroot\\css\\sidebar.css",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\sidebar.css",
+              "RelativeToolTip": "StokWebTemplate\\wwwroot\\css\\sidebar.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-08-08T12:58:34.418Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dattaable-style.css",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\dattaable-style.css",
+              "RelativeDocumentMoniker": "StokWebTemplate\\wwwroot\\css\\dattaable-style.css",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\css\\dattaable-style.css",
+              "RelativeToolTip": "StokWebTemplate\\wwwroot\\css\\dattaable-style.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-08-08T12:58:33.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminAnalizController.cs",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\Admin\\AdminAnalizController.cs",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Controllers\\Admin\\AdminAnalizController.cs",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\Admin\\AdminAnalizController.cs",
+              "RelativeToolTip": "StokWebTemplate\\Controllers\\Admin\\AdminAnalizController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-08T07:38:35.97Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "premium-animations.js",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\premium-animations.js",
+              "RelativeDocumentMoniker": "StokWebTemplate\\wwwroot\\js\\premium-animations.js",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\premium-animations.js",
+              "RelativeToolTip": "StokWebTemplate\\wwwroot\\js\\premium-animations.js",
+              "ViewState": "AgIAAAMBAAAAAAAAAAAcwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-08T07:38:25.222Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "sidebar.js",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\sidebar.js",
+              "RelativeDocumentMoniker": "StokWebTemplate\\wwwroot\\js\\sidebar.js",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\sidebar.js",
+              "RelativeToolTip": "StokWebTemplate\\wwwroot\\js\\sidebar.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-08T07:38:24.247Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "pagination.js",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\pagination.js",
+              "RelativeDocumentMoniker": "StokWebTemplate\\wwwroot\\js\\pagination.js",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\pagination.js",
+              "RelativeToolTip": "StokWebTemplate\\wwwroot\\js\\pagination.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-08T07:38:19.229Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "dattaable-core.js",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\dattaable-core.js",
+              "RelativeDocumentMoniker": "StokWebTemplate\\wwwroot\\js\\dattaable-core.js",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\wwwroot\\js\\dattaable-core.js",
+              "RelativeToolTip": "StokWebTemplate\\wwwroot\\js\\dattaable-core.js",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAWwJsAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-08-05T14:25:08.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Stok\\AdminStok\\Index.cshtml",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Views\\Stok\\AdminStok\\Index.cshtml",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Stok\\AdminStok\\Index.cshtml",
+              "RelativeToolTip": "StokWebTemplate\\Views\\Stok\\AdminStok\\Index.cshtml",
+              "ViewState": "AgIAACoBAAAAAAAAAAAEwEYBAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-05T06:51:58.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Log.cshtml",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Stok\\AdminStok\\Log.cshtml",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Views\\Stok\\AdminStok\\Log.cshtml",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Stok\\AdminStok\\Log.cshtml",
+              "RelativeToolTip": "StokWebTemplate\\Views\\Stok\\AdminStok\\Log.cshtml",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAWwI8AAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-08T07:38:40.53Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\AdminPersonel\\Index.cshtml",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Views\\AdminPersonel\\Index.cshtml",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\AdminPersonel\\Index.cshtml",
+              "RelativeToolTip": "StokWebTemplate\\Views\\AdminPersonel\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-05T11:29:20.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Cari\\PersonelCari\\Index.cshtml",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Views\\Cari\\PersonelCari\\Index.cshtml",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Cari\\PersonelCari\\Index.cshtml",
+              "RelativeToolTip": "StokWebTemplate\\Views\\Cari\\PersonelCari\\Index.cshtml",
+              "ViewState": "AgIAADwBAAAAAAAAAAAmwH8BAABbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-05T11:29:17.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Stok\\PersonelStok\\Index.cshtml",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Views\\Stok\\PersonelStok\\Index.cshtml",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Stok\\PersonelStok\\Index.cshtml",
+              "RelativeToolTip": "StokWebTemplate\\Views\\Stok\\PersonelStok\\Index.cshtml",
+              "ViewState": "AgIAAHwBAAAAAAAAAAAmwL0BAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-05T11:29:14.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_AdminLayout.cshtml",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Views\\Shared\\_AdminLayout.cshtml",
+              "RelativeToolTip": "StokWebTemplate\\Views\\Shared\\_AdminLayout.cshtml",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAmwHAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-05T09:26:36.041Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AdminStokController.cs",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\Admin\\AdminStokController.cs",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Controllers\\Admin\\AdminStokController.cs",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\Admin\\AdminStokController.cs",
+              "RelativeToolTip": "StokWebTemplate\\Controllers\\Admin\\AdminStokController.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAA3wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-05T06:51:31.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AdminPanelController.cs",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\Admin\\AdminPanelController.cs",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Controllers\\Admin\\AdminPanelController.cs",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\Admin\\AdminPanelController.cs",
+              "RelativeToolTip": "StokWebTemplate\\Controllers\\Admin\\AdminPanelController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T12:49:28.437Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "GirisController.cs",
+              "DocumentMoniker": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\GirisController.cs",
+              "RelativeDocumentMoniker": "StokWebTemplate\\Controllers\\GirisController.cs",
+              "ToolTip": "C:\\Users\\tosun\\source\\repos\\StokWebTemplate\\StokWebTemplate\\Controllers\\GirisController.cs",
+              "RelativeToolTip": "StokWebTemplate\\Controllers\\GirisController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T12:49:24.903Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

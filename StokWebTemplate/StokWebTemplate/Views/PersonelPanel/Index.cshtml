@@ -1,0 +1,319 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+    ViewBag.Title = "Personel Panel - Ana Sayfa";
+    var kullanici = Context.Session.GetString("KULLANICI_ADI") ?? "Personel";
+}
+
+<!-- 🎨 PREMIUM ANIMATIONS CSS -->
+<style>
+    /* 🎯 FADE IN ANIMATIONS */
+    .fade-in {
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .fade-in-left {
+        animation: fadeInLeft 0.8s ease-out;
+    }
+
+    .fade-in-right {
+        animation: fadeInRight 0.8s ease-out;
+    }
+
+    @@keyframes fadeIn
+    {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @@keyframes fadeInUp
+        {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @@keyframes fadeInLeft {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-30px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @@keyframes fadeInRight {
+                        from {
+                            opacity: 0;
+                            transform: translateX(30px);
+                        }
+
+                        to {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
+                    }
+
+                    /* 💫 HOVER EFFECTS */
+                    .card-hover {
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        cursor: pointer;
+                    }
+
+                    .card-hover:hover {
+                        transform: translateY(-8px) scale(1.02);
+                        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                    }
+
+                    /* 🎨 GRADIENT CARDS */
+                    .gradient-primary {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    }
+
+                    .gradient-success {
+                        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                    }
+
+                    .gradient-info {
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    }
+
+                    /* 🚀 BUTTON ANIMATIONS */
+                    .btn-animated {
+                        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .btn-animated:hover {
+                        transform: translateY(-3px);
+                        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+                    }
+
+                    .btn-animated::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                        transition: left 0.5s;
+                    }
+
+                    .btn-animated:hover::before {
+                        left: 100%;
+                    }
+
+                    /* 🎯 STAGGER DELAYS */
+                    .stagger-1 {
+                        animation-delay: 0.1s;
+                    }
+
+                    .stagger-2 {
+                        animation-delay: 0.2s;
+                    }
+
+                    .stagger-3 {
+                        animation-delay: 0.3s;
+                    }
+
+                    .stagger-4 {
+                        animation-delay: 0.4s;
+                    }
+
+                    .stagger-5 {
+                        animation-delay: 0.5s;
+                    }
+
+                    .stagger-6 {
+                        animation-delay: 0.6s;
+                    }
+
+                    /* 💎 COUNTER ANIMATION */
+                    .counter {
+                        font-weight: bold;
+                        font-size: 2.5rem;
+                    }
+                </style>
+
+                <div class="container-fluid">
+                    <div class="text-center mb-5 fade-in">
+                        <h1 class="display-4 fw-bold text-primary">Hoş Geldiniz, @kullanici!</h1>
+                        <p class="lead text-muted">Personel Paneli - Stok Takip Sistemi</p>
+                        <div class="bg-primary" style="height: 3px; width: 100px; margin: 0 auto; border-radius: 2px;"></div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                    {
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Hata:</strong> @ViewBag.ErrorMessage
+                        </div>
+                    }
+
+                    <!-- 📊 İstatistik Kartları - Premium -->
+                    <div class="row mb-5">
+                        <div class="col-md-4">
+                            <div class="card gradient-primary text-white card-hover fade-in-left stagger-1 border-0 shadow">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-shopping-cart fa-3x mb-3"></i>
+                                    <h5 class="card-title">Toplam Sipariş</h5>
+                                    <h2 class="counter display-4" id="counter1">@(ViewBag.ToplamSiparis ?? 0)</h2>
+                                    <small class="opacity-75">adet</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card gradient-success text-white card-hover fade-in-up stagger-2 border-0 shadow">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-building fa-3x mb-3"></i>
+                                    <h5 class="card-title">Toplam Cari</h5>
+                                    <h2 class="counter display-4" id="counter2">@(ViewBag.ToplamCari ?? 0)</h2>
+                                    <small class="opacity-75">firma</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card gradient-info text-white card-hover fade-in-right stagger-3 border-0 shadow">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-cubes fa-3x mb-3"></i>
+                                    <h5 class="card-title">Toplam Stok</h5>
+                                    <h2 class="counter display-4" id="counter3">@(ViewBag.ToplamStok ?? 0)</h2>
+                                    <small class="opacity-75">çeşit</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 🚀 Hızlı İşlemler - Modern -->
+                    <div class="card border-0 shadow-lg fade-in-up stagger-4">
+                        <div class="card-header bg-gradient text-white text-center py-4"
+                            style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                            <h4 class="mb-0"><i class="fas fa-bolt me-2"></i>Hızlı İşlemler</h4>
+                            <small class="opacity-75">Sık kullanılan işlemler için hızlı erişim</small>
+                        </div>
+                        <div class="card-body p-5">
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <a href="/PersonelSiparis" class="btn btn-outline-primary btn-lg w-100 btn-animated stagger-5 py-4">
+                                        <i class="fas fa-shopping-cart fa-2x mb-3 d-block"></i>
+                                        <strong>Siparişler</strong>
+                                        <br><small class="text-muted">Sipariş listesini görüntüle</small>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="/PersonelCari" class="btn btn-outline-success btn-lg w-100 btn-animated stagger-6 py-4">
+                                        <i class="fas fa-building fa-2x mb-3 d-block"></i>
+                                        <strong>Cari Listesi</strong>
+                                        <br><small class="text-muted">Müşteri bilgilerini incele</small>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="/PersonelStok" class="btn btn-outline-info btn-lg w-100 btn-animated stagger-6 py-4">
+                                        <i class="fas fa-cubes fa-2x mb-3 d-block"></i>
+                                        <strong>Stok Durumu</strong>
+                                        <br><small class="text-muted">Mevcut stokları kontrol et</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 🎯 Günün Özeti -->
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <div class="card border-0 shadow fade-in-up stagger-4">
+                                <div class="card-body text-center p-5">
+                                    <i class="fas fa-chart-line fa-3x text-success mb-3"></i>
+                                    <h4 class="text-primary">Sistem Aktif ve Hazır!</h4>
+                                    <p class="text-muted mb-0">Tüm modüller çalışır durumda. İyi çalışmalar dileriz!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🚀 PREMIUM JAVASCRIPT ANIMATIONS -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // 🎯 COUNTER ANIMATION
+                        function animateCounter(elementId, targetValue, duration = 2000) {
+                            const element = document.getElementById(elementId);
+                            if (!element) return;
+
+                            const startValue = 0;
+                            const increment = targetValue / (duration / 16);
+                            let currentValue = startValue;
+
+                            const timer = setInterval(() => {
+                                currentValue += increment;
+                                if (currentValue >= targetValue) {
+                                    element.textContent = targetValue;
+                                    clearInterval(timer);
+                                } else {
+                                    element.textContent = Math.floor(currentValue);
+                                }
+                            }, 16);
+                        }
+
+                        // 🎨 Start counter animations with delay
+                        setTimeout(() => animateCounter('counter1', @(ViewBag.ToplamSiparis ?? 0), 1500), 300);
+                        setTimeout(() => animateCounter('counter2', @(ViewBag.ToplamCari ?? 0), 1800), 600);
+                        setTimeout(() => animateCounter('counter3', @(ViewBag.ToplamStok ?? 0), 2000), 900);
+
+                        // 🌟 WELCOME NOTIFICATION - sadece ilk girişte
+                        @if (ViewBag.ShowWelcome == true)
+                            {
+                                <text>
+                                setTimeout(() => {
+                                    const welcomeDiv = document.createElement('div');
+                                    welcomeDiv.className = 'alert alert-success position-fixed';
+                                    welcomeDiv.style.cssText = `
+                                    top: 20px; right: 20px; z-index: 9999;
+                                    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                                    border: none; border-radius: 15px;
+                                    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                                    color: white;
+                                    `;
+                                    welcomeDiv.innerHTML = `
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-user-check me-2"></i>
+                                        <div>
+                                            <strong>Personel Paneli Aktif!</strong><br>
+                                                <small>Hoş geldiniz, @ViewBag.Kullanici</small>
+                                        </div>
+                                        <button type="button" class="btn-close btn-close-white ms-3" onclick="this.parentElement.parentElement.remove()"></button>
+                                    </div>
+                                    `;
+
+                                    document.body.appendChild(welcomeDiv);
+                                    setTimeout(() => {
+                                        if (welcomeDiv.parentElement) {
+                                            welcomeDiv.style.animation = 'fadeOut 0.5s ease-out';
+                                            setTimeout(() => welcomeDiv.remove(), 500);
+                                        }
+                                    }, 5000);
+                                }, 1200);
+                                </text>
+                        }
+                    });
+                </script>

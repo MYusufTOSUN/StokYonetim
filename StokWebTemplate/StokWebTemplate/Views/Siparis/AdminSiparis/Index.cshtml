@@ -1,0 +1,439 @@
+﻿@using System.Data
+@model DataTable
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewBag.Title = "Sipariş Yönetimi";
+    var yil = ViewBag.Yil as string ?? "T";
+    var tur = ViewBag.Tur as string ?? "T";
+    int sayfaNo = ViewBag.SayfaNo ?? 1;
+    int toplamSayfa = ViewBag.ToplamSayfa ?? 1;
+}
+
+<!-- 🎨 PREMIUM SIPARIS PAGE ANIMATIONS -->
+<style>
+    /* 🎯 ANIMATIONS */
+    .fade-in {
+        animation: fadeIn 0.8s ease-out;
+    }
+
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .slide-in-left {
+        animation: slideInLeft 0.6s ease-out;
+    }
+
+    @@keyframes fadeIn
+    {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @@keyframes fadeInUp
+        {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @@keyframes slideInLeft { 
+                    from {
+                        opacity: 0;
+                        transform: translateX(-50px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                /* 🎨 MODERN FILTERS */
+                .filter-card {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    border: none;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                }
+
+                .filter-select {
+                    border-radius: 10px;
+                    border: 2px solid rgba(255, 255, 255, 0.2);
+                    background: rgba(255, 255, 255, 0.9);
+                    transition: all 0.3s ease;
+                }
+
+                .filter-select:focus {
+                    border-color: #667eea;
+                    box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+                    transform: scale(1.02);
+                }
+
+                /* 📊 MODERN TABLE */
+                .modern-table {
+                    border-radius: 15px;
+                    overflow: hidden;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    background: #fff;
+                }
+
+                .modern-table thead th {
+                    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+                    color: white;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    padding: 15px;
+                    border: none;
+                }
+
+                .modern-table tbody tr {
+                    transition: all 0.3s ease;
+                    border: none;
+                }
+
+                .modern-table tbody tr:hover {
+                    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+                    transform: translateX(5px);
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                }
+
+                .modern-table tbody td {
+                    padding: 15px;
+                    vertical-align: middle;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                }
+
+                /* 🎪 BUTTON ANIMATIONS */
+                .btn-modern {
+                    border-radius: 10px;
+                    padding: 8px 16px;
+                    font-weight: 500;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    position: relative;
+                    overflow: hidden;
+                }
+
+                .btn-modern:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                }
+
+                .btn-modern::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                    transition: left 0.5s;
+                }
+
+                .btn-modern:hover::before {
+                    left: 100%;
+                }
+
+                /* 🏷️ STATUS BADGES */
+                .status-badge {
+                    padding: 6px 12px;
+                    border-radius: 20px;
+                    font-size: 0.85em;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+
+                .status-alim {
+                    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                    color: white;
+                }
+
+                .status-satim {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                }
+
+                /* 🎯 STAGGER DELAYS */
+                .stagger-1 {
+                    animation-delay: 0.1s;
+                }
+
+                .stagger-2 {
+                    animation-delay: 0.2s;
+                }
+
+                .stagger-3 {
+                    animation-delay: 0.3s;
+                }
+
+                /* 📱 RESPONSIVE */
+                @@media(max - width: 768px) {
+                        .modern-table {
+                            font-size: 0.9em;
+                        }
+
+                        .modern-table thead th,
+                        .modern-table tbody td {
+                            padding: 10px 8px;
+                        }
+                    }
+                </style>
+
+                <div class="container-fluid">
+                    <div id="messageArea"></div>
+
+                    <!-- 📋 HEADER SECTION -->
+                    <div class="text-center mb-4 fade-in">
+                        <h1 class="display-5 fw-bold text-primary">📋 Sipariş Yönetimi</h1>
+                        <p class="lead text-muted">Tüm siparişlerinizi buradan yönetebilirsiniz</p>
+                        <div class="bg-primary" style="height: 3px; width: 100px; margin: 0 auto; border-radius: 2px;"></div>
+                    </div>
+
+                    <!-- 🎛️ FILTER SECTION -->
+                    <div class="card filter-card mb-4 fade-in-up stagger-1">
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-8">
+                                    <form method="get" asp-action="Index" class="d-flex align-items-center gap-3"
+                                        onchange="this.submit()">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <i class="fas fa-calendar-alt text-white"></i>
+                                            <label class="text-white fw-bold mb-0">Yıl:</label>
+                                            <select name="yil" class="form-select filter-select">
+                                                @Html.Raw($"<option value='T' {(yil == "T" ? "selected" : "")}>🗓️ Tüm Yıllar</option>")
+                                                @Html.Raw($"<option value='2025' {(yil == "2025" ? "selected" : "")}>📅 2025</option>")
+                                                @Html.Raw($"<option value='2024' {(yil == "2024" ? "selected" : "")}>📅 2024</option>")
+                                            </select>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <i class="fas fa-tags text-white"></i>
+                                            <label class="text-white fw-bold mb-0">Tür:</label>
+                                            <select name="tur" class="form-select filter-select">
+                                                @Html.Raw($"<option value='T' {(tur == "T" ? "selected" : "")}>🔄 Tümü</option>")
+                                                @Html.Raw($"<option value='A' {(tur == "A" ? "selected" : "")}>📥 Alım</option>")
+                                                @Html.Raw($"<option value='V' {(tur == "V" ? "selected" : "")}>📤 Satım</option>")
+                                            </select>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <div class="d-flex gap-2 justify-content-end">
+                                        <button onclick="exportSiparisCsv('@yil', '@tur')" class="btn btn-light btn-modern">
+                                            <i class="fas fa-file-csv me-2"></i>CSV İndir
+                                        </button>
+                                        <a asp-action="Yeni" class="btn btn-light btn-modern">
+                                            <i class="fas fa-plus me-2"></i>Yeni Sipariş
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 📊 TABLE SECTION -->
+                    <div class="modern-table fade-in-up stagger-2">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-hashtag me-2"></i>ID</th>
+                                    <th><i class="fas fa-building me-2"></i>Cari Firma</th>
+                                    <th><i class="fas fa-cube me-2"></i>Stok Ürün</th>
+                                    <th><i class="fas fa-sort-numeric-up me-2"></i>Miktar</th>
+                                    <th><i class="fas fa-calendar me-2"></i>Tarih</th>
+                                    <th><i class="fas fa-tag me-2"></i>Tür</th>
+                                    <th><i class="fas fa-cogs me-2"></i>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model != null && Model.Rows.Count > 0)
+                                {
+                                    foreach (DataRow row in Model.Rows)
+                                    {
+                                        var siparisTur = row["SIPARIS_TUR"].ToString();
+                                        <tr class="slide-in-left">
+                                            <td><span class="badge bg-primary">@row["SIPARIS_ID"]</span></td>
+                                            <td><strong>🏢 @row["CARI_SIRKET"]</strong></td>
+                                            <td><span class="text-info">📦 @row["STOK_AD"]</span></td>
+                                            <td><span class="badge bg-secondary">@row["MIKTAR"]</span></td>
+                                            <td><i
+                                                    class="fas fa-calendar-day text-muted me-1"></i>@Convert.ToDateTime(row["SIPARIS_TARIHI"]).ToString("dd.MM.yyyy")
+                                            </td>
+                                            <td>
+                                                <span class="status-badge @(siparisTur == "A" ? "status-alim" : "status-satim")">
+                                                    @(siparisTur == "A" ? "📥 Alım" : "📤 Satım")
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex gap-1">
+                                                    <a asp-action="Log" asp-route-id="@row["SIPARIS_ID"]"
+                                                        class="btn btn-outline-primary btn-sm btn-modern" title="Detayları Görüntüle">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a asp-action="Guncelle" asp-route-id="@row["SIPARIS_ID"]"
+                                                        class="btn btn-outline-warning btn-sm btn-modern" title="Düzenle">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a asp-action="Sil" asp-route-id="@row["SIPARIS_ID"]"
+                                                        class="btn btn-outline-danger btn-sm btn-modern" title="Sil"
+                                                        onclick="return confirm('❌ Bu siparişi silmek istediğinize emin misiniz?');">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="7" class="text-center py-5">
+                                            <div class="text-muted">
+                                                <i class="fas fa-inbox fa-3x mb-3"></i>
+                                                <h5>📭 Kayıt Bulunamadı</h5>
+                                                <p>Seçili kriterlere uygun sipariş bulunmuyor.</p>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 📄 MODERN PAGINATION -->
+                    @if (toplamSayfa > 1)
+                    {
+                        <div class="pagination-container" data-total-pages="@toplamSayfa">
+                            <nav>
+                                <ul class="pagination">
+                                    @if (sayfaNo > 1)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@(sayfaNo - 1)" aria-label="Önceki">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                    
+                                    @{
+                                        int startPage = Math.Max(1, sayfaNo - 2);
+                                        int endPage = Math.Min(toplamSayfa, sayfaNo + 2);
+                                        
+                                        if (startPage > 1)
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=1">1</a>
+                                            </li>
+                                            if (startPage > 2)
+                                            {
+                                                <li class="page-item disabled">
+                                                    <span class="pagination-ellipsis">...</span>
+                                                </li>
+                                            }
+                                        }
+                                        
+                                        for (int i = startPage; i <= endPage; i++)
+                                        {
+                                            <li class="page-item @(i == sayfaNo ? "active" : "")">
+                                                <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@i">@i</a>
+                                            </li>
+                                        }
+                                        
+                                        if (endPage < toplamSayfa)
+                                        {
+                                            if (endPage < toplamSayfa - 1)
+                                            {
+                                                <li class="page-item disabled">
+                                                    <span class="pagination-ellipsis">...</span>
+                                                </li>
+                                            }
+                                            <li class="page-item">
+                                                <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@toplamSayfa">@toplamSayfa</a>
+                                            </li>
+                                        }
+                                    }
+                                    
+                                    @if (sayfaNo < toplamSayfa)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" href="?yil=@yil&tur=@tur&sayfa=@(sayfaNo + 1)" aria-label="Sonraki">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                            <div class="pagination-info">
+                                <small class="text-muted">📄 Sayfa @sayfaNo / @toplamSayfa</small>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- 📊 SUMMARY CARD -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card border-0 shadow-lg fade-in-up stagger-3">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-chart-bar fa-2x text-primary mb-3"></i>
+                                    <h5 class="text-primary">📈 Toplam @(Model?.Rows.Count ?? 0) Sipariş Listelendi</h5>
+                                    <p class="text-muted mb-0">Filtreleme ve arama özelliklerini kullanarak istediğiniz siparişi
+                                        bulabilirsiniz.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🚀 JAVASCRIPT ANIMATIONS -->
+                <script>
+                    // CSV Export Function
+                    function exportSiparisCsv(yil, tur) {
+                        const btn = event.target;
+                        const originalText = btn.innerHTML;
+
+                        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>İndiriliyor...';
+                        btn.disabled = true;
+
+                        fetch(`/AdminSiparis/ExportSiparisCsv?yil=${yil}&tur=${tur}`)
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.blob();
+                                }
+                                throw new Error('Export failed');
+                            })
+                            .then(blob => {
+                                const url = window.URL.createObjectURL(blob);
+                                const a = document.createElement('a');
+                                a.href = url;
+                                a.download = `siparisler_${yil}_${tur}.csv`;
+                                document.body.appendChild(a);
+                                a.click();
+                                document.body.removeChild(a);
+                                window.URL.revokeObjectURL(url);
+
+                                // Success notification
+                                showNotification('✅ CSV dosyası başarıyla indirildi!', 'success');
+                            })
+                            .catch(error => {
+                                console.error('Export error:', error);
+                                showNotification('❌ CSV indirme hatası!', 'error');
+                            })
+                            .finally(() => {
+                                btn.innerHTML = originalText;
+                                btn.disabled = false;
+                            });
+                    }
+                </script>
